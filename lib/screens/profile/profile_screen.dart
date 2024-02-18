@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:Cloth_Cylcle/bloc/login_bloc.dart';
+import 'package:Cloth_Cylcle/screens/complete_profile/complete_profile_screen.dart';
+import 'package:Cloth_Cylcle/screens/profile/about.dart';
 
 import 'components/profile_menu.dart';
 import 'components/profile_pic.dart';
@@ -22,27 +26,38 @@ class ProfileScreen extends StatelessWidget {
             ProfileMenu(
               text: "My Account",
               icon: "assets/icons/User Icon.svg",
-              press: () => {},
+              onpress: () => {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CompleteProfileScreen()))
+              },
             ),
             ProfileMenu(
               text: "Notifications",
               icon: "assets/icons/Bell.svg",
-              press: () {},
+              onpress: () {},
             ),
             ProfileMenu(
               text: "Settings",
               icon: "assets/icons/Settings.svg",
-              press: () {},
+              onpress: () {},
             ),
             ProfileMenu(
-              text: "Help Center",
+              text: "About",
               icon: "assets/icons/Question mark.svg",
-              press: () {},
+              onpress: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutPage()));
+              },
             ),
             ProfileMenu(
               text: "Log Out",
               icon: "assets/icons/Log out.svg",
-              press: () {},
+              onpress: () {
+                // Panggil event logout di sini
+                context.read<LoginBloc>().add(ProsesLogout());
+              },
             ),
           ],
         ),
